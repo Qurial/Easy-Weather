@@ -1,0 +1,41 @@
+@import '../../../style/vars.less';
+@import '../../../style/mixins.less';
+
+.weather-card {
+  display: inherit;
+  flex-direction: column;
+  padding: 2vh 1vw;
+  background-color: @details-bg;
+  border-radius: 20px;
+  box-shadow: 0 0 10px 2px #ddd;
+  .adaptive-image(140, 150);
+  .adaptive-font(@smallFontSizeMinScreen, @smallFontSizeNormalScreen);
+  img {
+    .adaptive-image(20px, 40px);
+  }
+  @media (min-width: 2600px) {
+    .adaptive-font(@normalFontSizeMinScreen, @normalFontSizeNormalScreen);
+    .adaptive-image(150, 200);
+    border-radius: 1vw;
+    box-shadow: 0 0 1vw 2px #ddd;
+  }
+}
+
+.weather-card__temperature {
+  position: relative;
+
+  span {
+    position: absolute;
+    font-size: inherit;
+  }
+
+  &--day,
+  &--night {
+    display: inline-block;
+    margin: 0 10%;
+  }
+
+  &--night {
+    color: @font-color-grey;
+  }
+}

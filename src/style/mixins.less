@@ -1,0 +1,143 @@
+// main: App.less
+
+.BreakpointCreator(@breakpoint, @padding) {
+  @media all and (max-width: @breakpoint) {
+    #root {
+      padding: 0 @padding;
+    }
+
+    .App {
+      height: calc(100vh - @padding);
+    }
+
+    .sidebar {
+      max-height: calc(100vh - @padding);
+    }
+  }
+}
+
+@minSize: 10;
+@normalSize: 20;
+@formula: calc(~'@{minSize}px' + (@normalSize - @minSize) * (100vw - 320px) / (1920 - 320));
+// .adaptive-image(@minSize, @normalSize) {
+//   width: @formula
+// }
+
+.adaptive-font(@minSize, @normalSize) {
+  @addSize: @normalSize - @minSize;
+  @addMinSize: @addSize + @addSize * 0.7;
+  @addMaxSize: @addSize + @addSize * 1.1;
+  @media (max-width: 768px) {
+    font-size: calc(~'@{minSize}px' + @addMinSize * (100vw - 320px) / (1920));
+  }
+  @media (min-width: 768px) {
+    font-size: calc(~'@{minSize}px' + @addSize * (100vw) / (1920));
+  }
+  @media (min-width: 3000px) {
+    font-size: calc(~'@{minSize}px' + @addMaxSize * (100vw - 320px) / (1920));
+  }
+}
+
+.adaptive-image(@minSize, @normalSize) {
+  @addSize: @normalSize - @minSize;
+  @addMinSize: @addSize + @addSize * 0.7;
+  @addMaxSize: @addSize + @addSize * 0.9;
+  @media (max-width: 768px) {
+    width: calc(~'@{minSize}px' + @addMinSize * (100vw - 320px) / (1920));
+  }
+  @media (min-width: 768px) {
+    width: calc(~'@{minSize}px' + @addSize * (100vw) / (1920));
+  }
+  @media (min-width: 3000px) {
+    width: calc(~'@{minSize}px' + @addMaxSize * (100vw - 320px) / (1920));
+  }
+}
+
+.adaptive-padding-horizontal(@minSize, @normalSize) {
+  @addSize: @normalSize - @minSize;
+  @addMinSize: @addSize + @addSize * 0.7;
+  @addMaxSize: @addSize + @addSize * 0.9;
+  @media (max-width: 768px) {
+    padding-left: calc(~'@{minSize}px' + @addMinSize * (100vw - 320px) / (1920));
+    padding-right: calc(~'@{minSize}px' + @addMinSize * (100vw - 320px) / (1920));
+  }
+  @media (min-width: 768px) {
+    padding-left: calc(~'@{minSize}px' + @addSize * (100vw) / (1920));
+    padding-right: calc(~'@{minSize}px' + @addSize * (100vw) / (1920));
+  }
+  @media (min-width: 3000px) {
+    padding-left: calc(~'@{minSize}px' + @addMaxSize * (100vw - 320px) / (1920));
+    padding-right: calc(~'@{minSize}px' + @addMaxSize * (100vw - 320px) / (1920));
+  }
+}
+.adaptive-padding-vertical(@minSize, @normalSize) {
+  @addSize: @normalSize - @minSize;
+  @addMinSize: @addSize + @addSize * 0.7;
+  @addMaxSize: @addSize + @addSize * 0.9;
+  @media (max-width: 768px) {
+    padding-top: calc(~'@{minSize}px' + @addMinSize * (100vw - 320px) / (1920));
+    padding-bottom: calc(~'@{minSize}px' + @addMinSize * (100vw - 320px) / (1920));
+  }
+  @media (min-width: 768px) {
+    padding-top: calc(~'@{minSize}px' + @addSize * (100vw) / (1920));
+    padding-bottom: calc(~'@{minSize}px' + @addSize * (100vw) / (1920));
+  }
+  @media (min-width: 3000px) {
+    padding-top: calc(~'@{minSize}px' + @addMaxSize * (100vw - 320px) / (1920));
+    padding-bottom: calc(~'@{minSize}px' + @addMaxSize * (100vw - 320px) / (1920));
+  }
+}
+
+.adaptive-size(@minSize, @normalSize, @minPadding, @normalPadding) {
+  @addSize: @normalSize - @minSize;
+  @addMinSize: @addSize + @addSize * 0.7;
+  @addMaxSize: @addSize + @addSize * 0.9;
+
+  @addPadding: @normalPadding - @minPadding;
+  @addMinPadding: @addPadding + @addPadding * 0.7;
+  @addMaxPadding: @addPadding + @addPadding * 0.9;
+
+  @media (max-width: 768px) {
+    width: calc(~'@{minSize}px' + @addMinSize * (100vw - 320px) / (1920));
+  }
+  @media (min-width: 768px) {
+    width: calc(~'@{minSize}px' + @addSize * (100vw) / (1920));
+  }
+  @media (min-width: 3000px) {
+    width: calc(~'@{minSize}px' + @addMaxSize * (100vw - 320px) / (1920));
+    padding:calc(~'@{minPadding}px' + @addMaxPadding * (100vw - 320px) / (1920));
+  }
+}
+// .adaptive-min-height(@minSize, @normalSize) {
+//   min-height: @formula
+// }
+
+.adaptive-min-height(@minSize, @normalSize) {
+  @addSize: @normalSize - @minSize;
+  @addMinSize: @addSize + @addSize * 0.7;
+  @addMaxSize: @addSize + @addSize * 0.9;
+  @media (max-width: 768px) {
+    min-height: calc(~'@{minSize}px' + @addMinSize * (100vw - 320px) / (1920));
+  }
+  @media (min-width: 768px) {
+    min-height: calc(~'@{minSize}px' + @addSize * (100vw) / (1920));
+  }
+  @media (min-width: 3000px) {
+    min-height: calc(~'@{minSize}px' + @addMaxSize * (100vw - 320px) / (1920));
+  }
+}
+
+.adaptive-margin-left(@minSize, @normalSize) {
+  @addSize: @normalSize - @minSize;
+  @addMinSize: @addSize + @addSize * 0.7;
+  @addMaxSize: @addSize + @addSize * 0.9;
+  @media (max-width: 768px) {
+    margin-left: calc(~'@{minSize}px' + @addMinSize * (100vw - 320px) / (1920));
+  }
+  @media (min-width: 768px) {
+    margin-left: calc(~'@{minSize}px' + @addSize * (100vw) / (1920));
+  }
+  @media (min-width: 3000px) {
+    margin-left: calc(~'@{minSize}px' + @addMaxSize * (100vw - 320px) / (1920));
+  }
+}

@@ -1,0 +1,54 @@
+// compress: false
+
+@import "vars";
+@import "mixins";
+
+#root {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  color: @font-color-black;
+}
+
+.app {
+  width: 100%;
+  height: fit-content;
+  display: grid;
+  grid-template-areas: 
+  'main' 'details';
+  transition: 1.5s;
+
+  @media (min-width: @phone-breakpoint) {
+    grid-template-areas: 
+    'main details';
+    grid-template-columns: 2fr 7fr;
+    .adaptive-min-height(620, 900);
+    height: 90vh;
+    width: clamp(100vh, 95vw, 100vw);
+
+    border-radius: 1vw;
+    overflow: hidden;
+    
+    @media (min-height: 100vw) {
+      height: 100vh;
+    }
+    @media (max-width: 100vh) {
+      border-radius: 0;
+    }
+  }
+}
+
+.main-container {
+  background-color: @main-bg;
+}
+.main {
+  grid-area: main;
+}
+
+
+.details {
+  background-color: @details-bg;
+  grid-area: details;
+}
