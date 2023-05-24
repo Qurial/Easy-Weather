@@ -1,5 +1,5 @@
 import { CitiesAPI } from "../../api/CityAPI";
-import { PhotosAPI } from "../../api/PhotosAPI";
+// import { PhotosAPI } from "../../api/PhotosAPI";
 import { WeatherAPI } from "../../api/WeatherAPI";
 import { forecastSlice } from "./Forecast.slice";
 
