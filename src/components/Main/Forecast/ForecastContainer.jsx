@@ -3,7 +3,8 @@ import Forecast from "./Forecast";
 import { useDispatch, useSelector } from "react-redux";
 import HiddenTabContainer from "./HiddenTab/HiddenTabContainer";
 import ActiveTabContainer from "./ActiveTab/ActiveTabContainer";
-import { fetchPhoto, fetchWeather } from "../../../Store/Forecast/ForecastThunk";
+import { fetchWeather } from "../../../Store/Forecast/ForecastThunk";
+// import { fetchPhoto } from "../../../Store/Forecast/ForecastThunk";
 import { resetForecast, toggleUnits } from "../../../Store/Forecast/Forecast.slice";
 
 const ForecastContainer = () => {
@@ -21,7 +22,7 @@ const ForecastContainer = () => {
 
   useEffect(() => {
     dispatch(fetchWeather(units, locationCoords[0], locationCoords[1]))
-    dispatch(fetchPhoto(locationName, countryName))
+    // dispatch(fetchPhoto(locationName, countryName))
     return () => {
       dispatch(resetForecast())
     }

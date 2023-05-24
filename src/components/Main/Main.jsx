@@ -11,7 +11,7 @@ const Main = () => {
   return (
     <main className='flex flex-col h-full items-center'>
       <SearchContainer />
-      <BackgroundImageContainer />
+      {/* <BackgroundImageContainer /> */}
       <ForecastContainer />
       <News />
       <BlogContainer />

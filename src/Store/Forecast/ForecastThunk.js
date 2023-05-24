@@ -36,17 +36,15 @@ export const fetchWeather = (units, lat, lon) => async (dispatch) => {
   catch (error) {
     dispatch(forecastSlice.actions.setWeatherDataError(error))
   }
-
 }
 
-export const fetchPhoto = (locationName, countryName) => async (dispatch) => {
-  let response
-  try {
-    response = await PhotosAPI.getPhoto(locationName)
-  }
-  catch {
-    response = await PhotosAPI.getPhoto(countryName)
-  }
-  dispatch(forecastSlice.actions.setCityPhoto(response))
-
-}
+// export const fetchPhoto = (locationName, countryName) => async (dispatch) => {
+//   let response
+//   try {
+//     response = await PhotosAPI.getPhoto(locationName)
+//   }
+//   catch {
+//     response = await PhotosAPI.getPhoto(countryName)
+//   }
+//   dispatch(forecastSlice.actions.setCityPhoto(response))
+// }

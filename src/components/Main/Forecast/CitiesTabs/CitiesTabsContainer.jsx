@@ -1,7 +1,8 @@
 import React from "react";
 import CitiesTab from "./CitiesTab";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCity, fetchPhoto, fetchWeather } from "../../../../Store/Forecast/ForecastThunk";
+import { fetchCity, fetchWeather } from "../../../../Store/Forecast/ForecastThunk";
+// import { fetchPhoto } from "../../../../Store/Forecast/ForecastThunk";
 
 const CitiesTabsContainer = () => {
   const dispatch = useDispatch()
@@ -9,7 +10,7 @@ const CitiesTabsContainer = () => {
   const units = useSelector(state => state.forecast.units)
   const handleTabOnClick = (lat, lon, cityName, countryName) => {
     dispatch(fetchWeather(units, lat, lon))
-    dispatch(fetchPhoto(cityName, countryName))
+    // dispatch(fetchPhoto(cityName, countryName))
     dispatch(fetchCity(cityName))
 
   }
