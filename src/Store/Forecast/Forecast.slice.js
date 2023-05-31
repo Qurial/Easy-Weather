@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getLocalTime } from "../../common/getLocalTime";
 import { fetchSavedCities } from "../../common/fetchSavedCities";
+import { getDownloadURL, listAll, ref } from "firebase/storage";
+import { storage } from "../../firebase.config";
 
 const initialWeather = {
   "dt": 0,
@@ -63,6 +65,7 @@ export const forecastSlice = createSlice({
     cityName: 'Minsk',
     isLoading: true,
     savedCities: savedCities,
+    iconsList: [],
   },
   reducers: {
     setTimePeriod: (state, { payload }) => {
@@ -144,12 +147,15 @@ export const forecastSlice = createSlice({
       })
       localStorage.setItem('savedCities', JSON.stringify(state.savedCities))
     },
+    setIconsList: (state, { payload }) => {
+      state.iconsList.push(payload)
+    }
   }
 })
 
 export default forecastSlice.reducer
 export const { toggleUnits, setWeatherData, setTimePeriod,
   setCityPhoto, setLocationCoords, setCountryName, setCityName,
-  resetForecast, toggleSavedCities } = forecastSlice.actions
+  resetForecast, toggleSavedCities, setIconsList } = forecastSlice.actions
 export const iconsPath = state => state.forecast.iconsPath
 export const getWeeklyForecast = state => state.forecast.weeklyForecast

@@ -1,4 +1,6 @@
+import { getDownloadURL, listAll, ref } from "firebase/storage";
 import React, { lazy } from "react";
+import { storage } from "../../firebase.config";
 const ForecastContainer = lazy(() => import('./Forecast/ForecastContainer'));
 const SearchContainer = lazy(() => import('./Search/SearchContainer'));
 // const BackgroundImageContainer = lazy(() => import('./BackgroundImage/BackgroundImageContainer'));
@@ -7,7 +9,6 @@ const BlogContainer = lazy(() => import('./Blog/BlogContainer'));
 
 
 const Main = () => {
-
   return (
     <main className='flex flex-col h-full items-center'>
       <SearchContainer />
