@@ -1,19 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import HiddenTab from "./HiddenTab";
 import { useDispatch, useSelector } from "react-redux";
-import { iconsPath, setTimePeriod } from "../../../../Store/Forecast/Forecast.slice";
+import { setTimePeriod } from "../../../../Store/Forecast/Forecast.slice";
 import { checkIfLast } from "../../../../common/checkIfLast";
 import getIconUrl from "../../../../common/getIconUrl";
 
 const HiddenTabContainer = ({ item, index, setActiveTab }) => {
 
-  const dispatch = useDispatch()
-
   const weeklyForecast = useSelector(state => state.forecast.weeklyForecast)
   const iconsList = useSelector(state => state.forecast.iconsList)
   const iconId = useSelector(state => state.forecast.weeklyForecast[index][0].weather[0].icon)
-
   const icon = getIconUrl(iconId, iconsList)
+
+  const [isImageLoading, setIsImageLoading] = useState(true)
+  useEffect(() => {
+    setIsImageLoading(true)
+  }, [icon])
+
+  const dispatch = useDispatch()
   const weekDay = useSelector(state => state.forecast.weekDays[item[0].weekDay]).slice(0, 3)
   const temperature = Math.round(useSelector(state => state.forecast.weeklyForecast[index][0].main.temp))
   const degreeSign = useSelector(state => state.forecast.degreeSign)
@@ -38,6 +42,8 @@ const HiddenTabContainer = ({ item, index, setActiveTab }) => {
       degreeSign={degreeSign}
       divideLine={divideLine} 
       isLoading={isLoading} 
+      isImageLoading={isImageLoading} 
+      setIsImageLoading={setIsImageLoading} 
       />
   )
 }

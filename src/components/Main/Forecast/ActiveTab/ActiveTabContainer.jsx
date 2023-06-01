@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import ActiveTab from "./ActiveTab";
-import { useDispatch, useSelector } from "react-redux";
-import { iconsPath, getWeeklyForecast, resetForecast } from "../../../../Store/Forecast/Forecast.slice";
+import { useSelector } from "react-redux";
+import { getWeeklyForecast } from "../../../../Store/Forecast/Forecast.slice";
 import { getLocalTime } from "../../../../common/getLocalTime";
 import { checkIfLast } from "../../../../common/checkIfLast";
 import getIconUrl from "../../../../common/getIconUrl";
@@ -11,12 +11,16 @@ const ActiveTabContainer = ({ item, index }) => {
   const timePeriod = useSelector(state => state.forecast.timePeriod)
   const periodWeather = useSelector(state => state.forecast.weeklyForecast[index][timePeriod])
   const isLoading = useSelector(state => state.forecast.isLoading)
-
-  const weeklyForecast = useSelector(getWeeklyForecast)
-
   const iconsList = useSelector(state => state.forecast.iconsList)
   const iconId = periodWeather.weather[0].icon
   const icon = getIconUrl(iconId, iconsList)
+
+  const [isImageLoading, setIsImageLoading] = useState(true)
+  useEffect(() => {
+    setIsImageLoading(true)
+  }, [icon])
+
+  const weeklyForecast = useSelector(getWeeklyForecast)
 
   const weekDay = useSelector(state => state.forecast.weekDays[item[0].weekDay])
   const months = useSelector(state => state.forecast.months)
@@ -43,6 +47,8 @@ const ActiveTabContainer = ({ item, index }) => {
       divideLine={divideLine}
       currentTime={currentTime}
       isLoading={isLoading}
+      isImageLoading={isImageLoading}
+      setIsImageLoading={setIsImageLoading}
        />
   )
 }

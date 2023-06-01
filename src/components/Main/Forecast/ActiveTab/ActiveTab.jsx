@@ -1,16 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import TimelineContainer from "./Timeline/TimelineContainer";
 import DetailsContainer from "./Details/DetailsContainer";
 import MainInfoContainer from "./MainInfo/MainInfoContainer";
-import LoaderDark from '../../../../assets/LoaderDark.svg'
 const ActiveTab = (
   { weekDay, icon, localDate, isLoading,
-    index, divideLine, currentTime }) => {
-
-  const [isImageLoading, setIsImageLoading] = useState(true)
-  useEffect(() => {
-    setIsImageLoading(true)
-  }, [icon])
+    index, divideLine, currentTime,
+  setIsImageLoading, isImageLoading }) => {
   return (
     <>
       {isLoading

@@ -8,13 +8,16 @@ import App from './App';
 function AppContainer() {
 
   const dispatch = useDispatch()
-  useEffect(async () => {
-    const imageListRef = ref(storage, 'images/weather-icons/')
-    const response = await listAll(imageListRef)
-    response.items.forEach(async item => {
-      let url = await getDownloadURL(item)
-      dispatch(setIconsList(url))
-    })
+  useEffect(() => {
+    const loadIcons = async () => {
+      const imageListRef = ref(storage, 'images/weather-icons/')
+      const response = await listAll(imageListRef)
+      response.items.forEach(async item => {
+        let url = await getDownloadURL(item)
+        dispatch(setIconsList(url))
+      })
+    }
+    loadIcons()
   }, [])
 
   return (

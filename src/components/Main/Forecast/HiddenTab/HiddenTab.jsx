@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
-const HiddenTab = ({ index, setActiveTab, icon, weekDay, temperature, degreeSign, divideLine, isLoading }) => {
-
-	const [isImageLoading, setIsImageLoading] = useState(true)
-  useEffect(() => {
-    setIsImageLoading(true)
-  }, [icon])
+const HiddenTab = ({ index, setActiveTab, icon, weekDay,
+	temperature, degreeSign, divideLine,
+	isLoading, setIsImageLoading, isImageLoading }) => {
 
 	return (
 		<>
