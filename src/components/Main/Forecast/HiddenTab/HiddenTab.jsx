@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const HiddenTab = ({ index, setActiveTab, icon, weekDay, temperature, degreeSign, divideLine, isLoading }) => {
+
+	const [isImageLoading, setIsImageLoading] = useState(true)
+  useEffect(() => {
+    setIsImageLoading(true)
+  }, [icon])
 
 	return (
 		<>
@@ -22,8 +27,12 @@ const HiddenTab = ({ index, setActiveTab, icon, weekDay, temperature, degreeSign
 						<h1 className='p-1'>{weekDay}</h1>
 					</div>
 
-					<div className='flex justify-center md:mt-5'>
-						<img src={icon} alt="weather" className='md:w-full w-2/5' />
+					<div className={`flex justify-center md:mt-5`}>
+              <img
+              src={icon}
+              alt="weather"
+              className={`w-2/5 md:w-full ${isImageLoading ? 'opacity-0' : ''}`}
+              onLoad={() => setIsImageLoading(false)} />
 					</div>
 
 					<div className='text-2xl font-thin md:mt-5'>
