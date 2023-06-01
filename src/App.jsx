@@ -8,6 +8,7 @@ const NewsPageContainer = lazy(() => import('./components/NewsPage/NewsPageConta
 function App() {
   return (
     <div className='min-h-screen flex flex-col mainBgColor '>
+      
       <Header />
       <Routes>
         <Route path='/' element={<Main />} />

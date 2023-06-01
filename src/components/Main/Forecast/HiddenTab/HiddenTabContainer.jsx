@@ -3,16 +3,17 @@ import HiddenTab from "./HiddenTab";
 import { useDispatch, useSelector } from "react-redux";
 import { iconsPath, setTimePeriod } from "../../../../Store/Forecast/Forecast.slice";
 import { checkIfLast } from "../../../../common/checkIfLast";
+import getIconUrl from "../../../../common/getIconUrl";
 
 const HiddenTabContainer = ({ item, index, setActiveTab }) => {
 
   const dispatch = useDispatch()
 
   const weeklyForecast = useSelector(state => state.forecast.weeklyForecast)
-  const icon =
-    useSelector(iconsPath) +
-    useSelector(state => state.forecast.weeklyForecast[index][0].weather[0].icon) +
-    '.svg'
+  const iconsList = useSelector(state => state.forecast.iconsList)
+  const iconId = useSelector(state => state.forecast.weeklyForecast[index][0].weather[0].icon)
+
+  const icon = getIconUrl(iconId, iconsList)
   const weekDay = useSelector(state => state.forecast.weekDays[item[0].weekDay]).slice(0, 3)
   const temperature = Math.round(useSelector(state => state.forecast.weeklyForecast[index][0].main.temp))
   const degreeSign = useSelector(state => state.forecast.degreeSign)

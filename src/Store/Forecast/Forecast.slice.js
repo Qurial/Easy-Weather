@@ -149,7 +149,7 @@ export const forecastSlice = createSlice({
     },
     setIconsList: (state, { payload }) => {
       state.iconsList.push(payload)
-    }
+    },
   }
 })
 

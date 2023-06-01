@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { iconsPath, getWeeklyForecast, resetForecast } from "../../../../Store/Forecast/Forecast.slice";
 import { getLocalTime } from "../../../../common/getLocalTime";
 import { checkIfLast } from "../../../../common/checkIfLast";
+import getIconUrl from "../../../../common/getIconUrl";
 
 const ActiveTabContainer = ({ item, index }) => {
 
@@ -12,7 +13,10 @@ const ActiveTabContainer = ({ item, index }) => {
   const isLoading = useSelector(state => state.forecast.isLoading)
 
   const weeklyForecast = useSelector(getWeeklyForecast)
-  const icon = useSelector(iconsPath) + periodWeather.weather[0].icon + '.svg';
+
+  const iconsList = useSelector(state => state.forecast.iconsList)
+  const iconId = periodWeather.weather[0].icon
+  const icon = getIconUrl(iconId, iconsList)
 
   const weekDay = useSelector(state => state.forecast.weekDays[item[0].weekDay])
   const months = useSelector(state => state.forecast.months)
