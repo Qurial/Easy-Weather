@@ -1,6 +1,7 @@
+// import { photoAPIKey } from "./APIKeys";
 // import { createClient } from 'pexels';
 
-// const client = createClient('O60xEnVSHwb1Yd2RR642F7ztsvFp5KnOEgIffOZW7IBuSQ2oCxF1eN4A');
+// const client = createClient(photoAPIKey);
 
 // export const PhotosAPI = {
 //   getPhoto: async (query) => {
