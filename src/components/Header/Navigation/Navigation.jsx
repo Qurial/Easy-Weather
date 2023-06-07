@@ -1,6 +1,6 @@
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import defaultImage from '../../../assets/profile-default.svg'
 import { motion } from "framer-motion";
 
@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearUserData, setUserData } from "../../../Store/Auth/Auth.slice";
 import { NavLink } from "react-router-dom";
 import Subscription from "./Subscription/Subscription";
+import ProfileMenu from "./ProfileMenu/ProfileMenu";
 
 const Link = ({ link, name }) => {
   return <NavLink to={link} className='m-0 p-4 text-lg sm:p-0 sm:m-4 hover:text-emerald-500 transition-all ease-out'>
@@ -27,8 +28,11 @@ const Navigation = () => {
   const profileImage = useSelector(state => state.auth?.userData?.providerData?.photoURL)
   const displayingProfileImage = (profileImage) ? profileImage : defaultImage;
 
+
+  const [isMenuShown, setIsMenuShown] = useState(false)
+
   const handleProfileClick = () => {
-    if (userData) logout();
+    if (userData) setIsMenuShown(!isMenuShown);
     else login();
   }
 
@@ -44,6 +48,7 @@ const Navigation = () => {
   const logout = async () => {
     localStorage.clear()
     dispatch(clearUserData())
+    setIsMenuShown(!isMenuShown)
   };
 
   return (
@@ -55,12 +60,14 @@ const Navigation = () => {
         <Link link={'/'} name={'Home'} />
         <Link link={'/news'} name={'News'} />
         <div className="flex items-center justify-center">
-          <motion.button
-            whileTap={{ scale: 1.05 }}
-            className=""
-            onClick={() => handleProfileClick()}>
-            <img src={displayingProfileImage} alt="profile" className="w-9 mx-1 bg-neutral-200 p-px rounded-full box-content " />
-          </motion.button>
+          <div className="relative">
+            <motion.button
+              whileTap={{ scale: 1.05 }}
+              onClick={() => handleProfileClick()}>
+              <img src={displayingProfileImage} alt="profile" className="w-9 mx-1 bg-neutral-200 p-px rounded-full box-content" />
+            </motion.button>
+            <ProfileMenu isMenuShown={isMenuShown} logout={logout} />
+          </div>
 
           <button
             onClick={() => ref.current.showModal()}
